@@ -1,0 +1,37 @@
+{
+  "errors": {
+    "admin_protected": "❌ Cannot mute an administrator!",
+    "invalid_duration": "❌ Invalid duration format: {}",
+    "user_not_found": "❌ User not found.",
+    "missing_permissions": "❌ You don't have permission to use this command.",
+    "bot_missing_permissions": "❌ Bot doesn't have permission to perform this action."
+  },
+  "moderation": {
+    "mute": {
+      "title": "🔇 Mute",
+      "description": "**User:** {}\n**Reason:** {}",
+      "duration": "Duration",
+      "moderator": "Moderator",
+      "appeal": "❓Don't agree with this action? Contact support to appeal! 🛑"
+    },
+    "unmute": {
+      "title": "🔊 Unmute",
+      "description": "**User:** {}\n**Reason:** {}",
+      "moderator": "Moderator"
+    },
+    "ban": {
+      "title": "⛔ Ban",
+      "description": "**User:** {}\n**Reason:** {}",
+      "duration": "Duration",
+      "moderator": "Moderator"
+    },
+    "kick": {
+      "title": "👢 Kick",
+      "description": "**User:** {}\n**Reason:** {}",
+      "moderator": "Moderator"
+    }
+  },
+  "auto_actions": {
+    "unmute": "[AUTO-UNMUTE] {} ({}) | Mute expired"
+  }
+}
