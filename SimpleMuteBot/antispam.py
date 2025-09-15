@@ -1,1 +1,0 @@
-BLOCKED_WORDS_FILE = 'discord_blocked_words_full.txt' 
