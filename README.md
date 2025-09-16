@@ -1,158 +1,148 @@
+---
+
 # SimpleMuteBot
 
-Discord бот для модерации с автоматическими фильтрами сообщений и поддержкой нескольких языков.
+A Discord moderation bot with automatic message filters and multi-language support.
 
-## Основные возможности
+## Key Features
 
-### Поддержка языков
-- Автоматическое определение языка сервера
-- Простая настройка через `/setup`
-- Поддержка русского и английского языков
-- Локализованные ответы и команды
+### Language Support
 
-### Автоматические фильтры
+* Automatic server language detection
+* Easy setup via `/setup`
+* Supports Russian and English
+* Localized responses and commands
 
-1. **Анти-спам** - Мут за флуд и спам
-2. **Анти-капс** - Мут за избыточное использование заглавных букв
-3. **Фильтр ссылок** - Защита от нежелательных ссылок
-4. **Авто-размут** - Автоматическое снятие мута по истечении срока
+### Automatic Filters
 
-### Команды модерации
+1. **Anti-Spam** – Mutes users for flooding and spamming
+2. **Anti-Caps** – Mutes users for excessive use of uppercase letters
+3. **Link Filter** – Protects against unwanted links
+4. **Auto-Unmute** – Automatically removes mute after the set duration
 
-- `/mute` (`/мут`) - Задать мут пользователю
-- `/unmute` (`/размут`) - Снять мут
-- `/ban` (`/бан`) - Забанить пользователя
-- `/unban` (`/разбан`) - Разбанить
-- `/kick` (`/кик`) - Кикнуть пользователя
-- `/timeout` - Временная блокировка
-- `/setup` - Настройка бота
+### Moderation Commands
 
-### Логирование
-- Детальное логирование всех действий
-- Настраиваемый канал для логов
-- Сохранение истории мутов
+* `/mute` (`/мут`) – Mute a user
+* `/unmute` (`/размут`) – Remove mute
+* `/ban` (`/бан`) – Ban a user
+* `/unban` (`/разбан`) – Unban a user
+* `/kick` (`/кик`) – Kick a user
+* `/timeout` – Temporary restriction
+* `/setup` – Configure the bot
 
-### Команды управления фильтрами
+### Logging
 
-- `/filterstats` - Показать статистику фильтров
-- `/filterrules` - Показать правила фильтров
+* Detailed logging of all actions
+* Customizable log channel
+* Mute history tracking
 
-## Быстрый старт
+### Filter Management Commands
 
-### Установка
+* `/filterstats` – Show filter statistics
+* `/filterrules` – Show filter rules
 
-1. Клонируйте репозиторий:
+## Quick Start
+
+### Installation
+
+1. Clone the repository:
+
 ```bash
-git clone https://github.com/ваш-пользователь/SimpleMuteBot.git
+git clone https://github.com/your-username/SimpleMuteBot.git
 cd SimpleMuteBot
 ```
 
-2. Установите зависимости:
+2. Install dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### Настройка
+### Configuration
 
-1. Создайте бота на [Discord Developer Portal](https://discord.com/developers/applications)
-2. Пригласите бота на сервер с правами:
-   - Чтение/отправка сообщений
-   - Бан участников
-   - Тайм-ауты
-   - Управление ролями
+1. Create a bot in the [Discord Developer Portal](https://discord.com/developers/applications)
 
-3. Настройте `config.py`:
+2. Invite the bot to your server with permissions:
+
+   * Read/Send Messages
+   * Ban Members
+   * Timeouts
+   * Manage Roles
+
+3. Configure `config.py`:
+
 ```python
-DISCORD_TOKEN = "ваш_токен_бота"
-LOG_CHANNEL_ID = 1234567890  # ID канала для логов
-SUPPRESS_LOGS = False  # Отключить логи в консоль
+DISCORD_TOKEN = "your_bot_token"
+LOG_CHANNEL_ID = 1234567890  # Log channel ID
+SUPPRESS_LOGS = False  # Disable console logs
 ```
 
-4. Запустите бота:
+4. Run the bot:
+
 ```bash
 python main.py
 ```
 
-5. Настройте язык на сервере:
+5. Set the server language:
+
 ```
-/setup язык: Русский
+/setup language: English
 ```
 
-## Дополнительные настройки
+## Advanced Settings
 
-### Настройка фильтров
+### Filter Configuration
 
-Файл `filter_config.py`:
+File: `filter_config.py`
 
 ```python
 FILTER_CONFIG = {
     "spam": {
-        "threshold": 3,  # Количество сообщений
-        "time_window": 120,  # Время в секундах
-        "mute_duration": "5m"  # Длительность мута
+        "threshold": 3,  # Number of messages
+        "time_window": 120,  # Time in seconds
+        "mute_duration": "5m"  # Mute duration
     },
     "caps": {
-        "threshold": 0.75,  # Процент капса
-        "min_length": 5,  # Минимальная длина
+        "threshold": 0.75,  # Caps percentage
+        "min_length": 5,  # Minimum message length
         "mute_duration": "5m"
     },
     "links": {
         "mute_duration": "10m",
-        "forbidden_links": ["discord.gg", "t.me"],  # Удаляются
-        "allowed_websites": ["youtube.com", "github.com"]  # Разрешены
+        "forbidden_links": ["discord.gg", "t.me"],  # Removed
+        "allowed_websites": ["youtube.com", "github.com"]  # Allowed
     }
 }
 ```
 
-## Запуск
+## Run
 
 ```bash
 python main.py
 ```
 
-## Запуск веб-панели
+## Run Web Panel
 
 ```bash
 python webpanel.py
 ```
 
-## Правила фильтров
+## Filter Rules
 
-### Спам
-- Отслеживает количество сообщений пользователя
-- При превышении лимита - автоматический мут
-- Настройка: 3 сообщения за 2 минуты → мут 5 минут
+### Spam
 
-### Капс
-- Проверяет процент заглавных букв
-- Игнорирует сообщения короче 5 символов
-- Настройка: более 75% заглавных букв
+* Monitors user message count
+* Exceeding the limit → automatic mute
+* Example: 3 messages in 2 minutes → 5-minute mute
 
-### Ссылки
-- **Запрещенные**: Discord, Telegram ссылки (удаление)
-- **Разрешенные**: YouTube, GitHub, Wikipedia и др. (пропуск)
-- **Неразрешенные**: Все остальные (мут 10 минут)
+### Caps
 
-### Исключения
-- Администраторы и модераторы не подвержены правилам
-- Боты игнорируются автоматически
+* Checks uppercase percentage
+* Ignores messages shorter than 5 characters
+* Default: more than 75% uppercase letters
 
-## Структура файлов
+### Links
 
-```
-SimpleMuteBot/
-├── main.py              # Главный файл бота
-├── config.py            # Основная конфигурация
-├── filter_config.py     # Настройки фильтров
-├── filters.py           # Система фильтрации
-├── cogs/
-│   └── moderation.py    # Команды модерации
-└── requirements.txt     # Зависимости
-```
-
-## Логирование
-
-Все действия модерации логируются в:
-- Консоль
-- Файл `bot.log`
-- Discord канал (настраивается в `config.py`) # SimpleMuteBot
+* **Forbidden**: Discord, Telegram links (removed)
+* **Allowed**: YouTube, GitHub, Wikipedia, etc. (allowed)
+* **Other**: All other links → 10-minute mute
